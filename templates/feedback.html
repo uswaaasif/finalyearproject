@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #e6fff7;
+            color: #333;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #00cc88;
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+        }
+
+        .form-container {
+            background-color: #ccffee;
+            border-radius: 11px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 30px auto;
+            width: 50%;
+            transition: transform 0.3s ease;
+            color: #333;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-heading {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #004d33;
+            font-weight: bold;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        .form-control {
+            background-color: #fff;
+            border-color: #e91e63;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #c2185b;
+            box-shadow: 0 0 15px rgba(194, 24, 91, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #e91e63;
+            border-color: #e91e63;
+            padding: 16px 32px;
+            font-size: 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #c2185b;
+            border-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #004d40;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+         .footer {
+            background-color: #00cc88; /* green color */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0; /* Adjusted to cover the entire width */
+            width: 100%; /* Adjusted to cover the entire width */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container d-flex justify-content-center">
+            <a class="navbar-brand" href="/">AI Word File Formatter and Refiner</a>
+        </div>
+    </nav>
+
+    <!-- Feedback Form -->
+    <div class="container form-container">
+        <h1 class="form-heading">Feedback Form</h1>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    <!-- Success message -->
+    <div id="successMessage" style="display: none; color: green;">
+        Feedback sent successfully!
+    </div>
+
+        <script>
+        $(document).ready(function () {
+            // Submit feedback form
+            $('#feedbackForm').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "/submit_feedback",
+                    data: formData,
+                    success: function (response) {
+                        $('#successMessage').show(); // Show success message
+                        $('#feedbackForm')[0].reset();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Word File Formatter and Refiner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #e6fff7;
+            color: #333;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #00cc88;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff !important;
+        }
+
+        .upload-card {
+            background-color: #ccffee;
+            border-radius: 11px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            color: #333;
+        }
+
+        .upload-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer {
+            background-color: #00cc88;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .section-heading {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #004d33;
+            font-weight: bold;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        .btn-container {
+            background-color: #ffe6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-container:hover {
+            background-color: #ffe6ff;
+        }
+
+        .btn-primary {
+            background-color: #e91e63;
+            border-color: #e91e63;
+            padding: 16px 32px;
+            font-size: 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #c2185b;
+            border-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #004d40;
+            border-color: #004d40;
+            padding: 16px 32px;
+            font-size: 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: #00251a;
+            border-color: #00251a;
+            transform: translateY(-2px);
+        }
+
+        .form-control {
+            background-color: #fff;
+            border-color: #e91e63;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #c2185b;
+            box-shadow: 0 0 15px rgba(194, 24, 91, 0.5);
+        }
+
+        .progress {
+            height: 30px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        .progress-bar {
+            background-color: #ffb3ff;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #004d40;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        textarea[readonly] {
+            background-color: #eeeeee;
+        }
+
+        .dialog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .dialog-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container d-flex justify-content-center">
+        <a class="navbar-brand" href="/">AI Word File Formatter and Refiner</a>
+    </div>
+</nav>
+<!-- End Navbar -->
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="upload-card">
+                <h2 class="section-heading">𝓡𝓮𝓯𝓲𝓷𝓮 𝓪𝓷𝓭 𝓕𝓸𝓻𝓶𝓪𝓽 𝓨𝓸𝓾𝓻 𝓕𝓲𝓵𝓮𝓼 𝓗𝓮𝓻𝓮</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file" class="btn btn-primary btn-block">Choose a .docx file</label>
+                        <input type="file" id="file" name="file" accept=".docx" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label for="header_name">Header Name:</label>
+                        <input type="text" class="form-control" id="header_name" name="header_name" required
+                            placeholder="Enter Header Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Summary:</label>
+                        <textarea class="form-control" id="summary" name="summary"
+                            placeholder="Auto-generated summary will appear here" readonly></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Upload & Format</button>
+                </form>
+                <div id="progressBar" class="progress d-none">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="outputMessage" class="mt-3 text-center">
+        <!-- Download link will be inserted here -->
+    </div>
+
+    <!-- Dialog Box for Feedback -->
+    <div class="dialog-container" id="feedbackDialog">
+        <div class="dialog-box">
+            <h4>Do you want to provide feedback?</h4>
+            <button id="yesFeedback" class="btn btn-primary">Yes</button>
+            <button id="noFeedback" class="btn btn-secondary">No</button>
+            <button id="cancelFeedback" class="btn btn-secondary">Cancel</button>
+        </div>
+    </div>
+    <!-- End Dialog Box -->
+
+</div>
+<!-- End Main Content -->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Trigger file input when label is clicked
+        $('label[for="file"]').click(function () {
+            $('#file').click();
+        });
+
+        // Show selected file name
+        $('#file').change(function () {
+            var fileName = $(this).val().split('\\').pop();
+            $('label[for="file"]').text(fileName);
+        });
+
+        // Submit form via AJAX
+        $('#uploadForm').submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var formData = new FormData(this);
+
+            // Show progress bar
+            $('#progressBar').removeClass('d-none');
+
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data:formData,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = $.ajaxSettings.xhr();
+                    xhr.upload.onprogress = function (e) {
+                        var percentage = Math.floor((e.loaded / e.total) * 100);
+                        $('.progress-bar').css('width', percentage + '%').attr('aria-valuenow', percentage);
+                    };
+                    return xhr;
+                },
+                success: function (response) {
+                    $('#outputMessage').html('<div class="alert alert-success" role="alert">' + response.success + '</div>');
+                    var downloadLink = '<a href="/download/' + response.docx_filename + '" class="btn btn-primary btn-block mt-3" download>Download Formatted DOCX File</a>';
+                    $('#outputMessage').append(downloadLink);
+                    $('#summary').val(response.summary); // Display the summary in the textarea
+                    // Show feedback dialog
+                    $('#feedbackDialog').show();
+                    // Hide progress bar
+                    $('#progressBar').addClass('d-none');
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.error : 'An error occurred while processing your request.';
+                    $('#outputMessage').html('<div class="alert alert-danger" role="alert">' + errorMessage + '</div>');
+                    // Hide progress bar
+                    $('#progressBar').addClass('d-none');
+                }
+            });
+        });
+
+        // Handle feedback dialog
+        $('#yesFeedback').click(function () {
+            window.location.href = '/feedback.html';
+        });
+
+        $('#noFeedback').click(function () {
+            window.location.href = '/';
+        });
+
+        // Handle cancel button in the feedback dialog
+        $('#cancelFeedback').click(function () {
+            $('#feedbackDialog').hide();
+        });
+    });
+</script>
+</body>
+
+</html>
+
+

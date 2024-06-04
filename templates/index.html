@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Word File Formatter and Refiner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #e6fff7; /* Light pink color */
+            color: #333;
+            font-family: Arial, sans-serif;
+            min-height: 100vh; /* Make sure body covers the entire viewport height */
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #00cc88; /* Darker pink color */
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+        }
+
+        .magazine-section {
+            background-color: #ccffee; /* Medium pink color */
+            border-radius: 11px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            color: #004d33;
+        }
+
+        .magazine-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+
+
+        .section-heading {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #004d33; /* green color */
+            font-weight: bold;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        .btn-container {
+            background-color: #ffe6ff; /* Lighter pink color */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-container:hover {
+            background-color: #ffe6ff; /* Light pink color */
+        }
+
+        .btn-primary {
+            background-color: #e91e63; /* Pink color */
+            border-color: #e91e63; /* Pink color */
+            padding: 16px 32px;
+            font-size: 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #c2185b; /* Dark pink color */
+            border-color: #c2185b; /* Dark pink color */
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #004d40; /* Dark teal color */
+            border-color: #004d40; /* Dark teal color */
+            padding: 16px 32px;
+            font-size: 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: #00251a; /* Darker teal color */
+            border-color: #00251a; /* Darker teal color */
+            transform: translateY(-2px);
+        }
+
+        .form-control {
+            background-color: #fff;
+            border-color: #e91e63; /* Pink color */
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #c2185b; /* Dark pink color */
+            box-shadow: 0 0 15px rgba(194, 24, 91, 0.5);
+        }
+
+        .progress {
+            height: 30px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        .progress-bar {
+            background-color: #ffb3ff; /* Dark teal color */
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #004d40; /* Dark teal color */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        textarea[readonly] {
+            background-color: #eeeeee;
+        }
+
+        .magazine-title {
+            font-size: 32px;
+            color: #e91e63;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .magazine-content {
+            font-size: 18px;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .magazine-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .magazine-article {
+            margin-bottom: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container d-flex justify-content-center">
+            <a class="navbar-brand" href="/">AI Word File Formatter and Refiner</a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 class="magazine-title">𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 𝓽𝓱𝓮 𝓐𝓘 𝓦𝓸𝓻𝓭 𝓕𝓲𝓵𝓮 𝓕𝓸𝓻𝓶𝓪𝓽𝓽𝓮𝓻 𝓪𝓷𝓭 𝓡𝓮𝓯𝓲𝓷𝓮𝓻</h1>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="magazine-article">
+                    <h2 class="section-heading">Transform Your Documents with AI</h2>
+                    <img src="https://www.managedoutsource.com/wp-content/uploads/2022/04/how-ai-is-transforming-document-scanning-and-storage.jpg" alt="AI Transformation" class="magazine-img">
+                    <p class="magazine-content">Discover how our AI-powered tool can help you transform your documents with ease. From formatting to refining content, our tool ensures your files are professional and well-organized.</p>
+                </div>
+
+                <div class="magazine-article">
+                    <h2 class="section-heading">Easy Upload and Format</h2>
+                    <img src="https://png.pngtree.com/element_our/sm/20180224/sm_5a91045e6dbcf.jpg" alt="Easy Upload" class="magazine-img">
+                    <p class="magazine-content">Uploading your document is as simple as clicking a button. Just choose your .docx file, and our AI takes care of the rest. It refines the content, adds headers, and generates summaries, saving you time and effort.</p>
+                </div>
+
+                <div class="magazine-article">
+                    <h2 class="section-heading">AI-Powered Refinement</h2>
+                    <img src="https://th.bing.com/th/id/OIP.JyOVW_EtNmPNAi2Z6RcleQHaE8?rs=1&pid=ImgDetMain" alt="AI Refinement" class="magazine-img">
+                    <p class="magazine-content">Our tool uses advanced AI models to refine your document's content. It ensures clarity, coherence, and consistency throughout the document, making it ready for presentation or publication.</p>
+                </div>
+
+                <div class="magazine-article">
+                    <h2 class="section-heading">Get Started Now</h2>
+                    <img src="https://kmslh.com/wp-content/uploads/2021/06/shutterstock_1106002595-scaled.jpg" alt="Get Started" class="magazine-img">
+                    <p class="magazine-content">Ready to enhance your documents? Upload your .docx file now and let our AI tool do the magic. Experience the convenience and efficiency of automated document formatting and refinement.</p>
+                    <div class="btn-container text-center">
+                        <a href="/upload.html" class="btn btn-primary">Upload & Format</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Content -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // Script to handle active class in navbar
+        $(document).ready
+
+(function () {
+            const path = window.location.pathname;
+            if (path === '/' || path === '/index.html') {
+                $('.nav-item').removeClass('active');
+                $('.nav-link[href="/"]').parent().addClass('active');
+            } else if (path === '/upload.html') {
+                $('.nav-item').removeClass('active');
+                $('.nav-link[href="/upload.html"]').parent().addClass('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
